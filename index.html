@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Under Maintenance - PT. SOLUSI TEKNOLOGI SANTARA</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body { box-sizing: border-box; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes pulse-slow {
+      0%,100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+
+    .float-animation { animation: float 3s ease-in-out infinite; }
+    .pulse-animation { animation: pulse-slow 2s ease-in-out infinite; }
+  </style>
+</head>
+
+<body class="h-full transition-colors duration-500">
+
+<div id="app-wrapper"
+     class="min-h-full w-full flex items-center justify-center px-4 sm:px-6 py-12">
+
+  <!-- Toggle Button -->
+  <button id="themeToggle"
+          class="fixed top-4 right-4 z-50 px-4 py-2 rounded-full text-sm font-medium
+                 bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900
+                 transition-all shadow-lg">
+    🌙 Night
+  </button>
+
+  <main class="max-w-2xl w-full text-center">
+
+    <!-- Logo -->
+    <div class="mb-8 flex justify-center">
+      <div class="float-animation">
+        <img 
+          src="logo-steksa.png" 
+          alt="logo-desa-citamiang"
+          class="mx-auto w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] object-contain"
+        >
+      </div>
+    </div>
+
+    <!-- Company -->
+    <p class="text-xs sm:text-sm tracking-widest uppercase mb-3 text-slate-500">
+      PT. SOLUSI TEKNOLOGI SANTARA
+    </p>
+
+    <!-- Title -->
+    <h1 class="text-3xl sm:text-5xl font-bold mb-5">
+      Under Maintenance
+    </h1>
+
+    <!-- Divider -->
+    <div class="w-20 sm:w-24 h-1 mx-auto mb-6 rounded-full bg-blue-500"></div>
+
+    <!-- Message -->
+    <p class="text-base sm:text-xl mb-10 leading-relaxed text-slate-500 px-2">
+      Kami sedang melakukan perbaikan sistem untuk memberikan layanan yang lebih baik.
+      Mohon maaf atas ketidaknyamanan ini.
+    </p>
+
+    <!-- Dots -->
+    <div class="flex justify-center gap-3 mb-10">
+      <div class="w-3 h-3 rounded-full bg-blue-500 pulse-animation"></div>
+      <div class="w-3 h-3 rounded-full bg-blue-500 pulse-animation" style="animation-delay:.3s"></div>
+      <div class="w-3 h-3 rounded-full bg-blue-500 pulse-animation" style="animation-delay:.6s"></div>
+    </div>
+
+    <!-- Contact -->
+    <div class="border-t pt-6 text-sm sm:text-base text-slate-500">
+      Untuk informasi lebih lanjut, hubungi kami di info@steksa.co.id
+    </div>
+
+  </main>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const toggle = document.getElementById("themeToggle");
+
+  const themes = {
+    dark: {
+      bg: "#0f172a",
+      text: "#f1f5f9"
+    },
+    light: {
+      bg: "#f8fafc",
+      text: "#0f172a"
+    }
+  };
+
+  function setTheme(mode) {
+    document.body.style.backgroundColor = themes[mode].bg;
+    document.body.style.color = themes[mode].text;
+    toggle.textContent = mode === "dark" ? "☀️ Light" : "🌙 Night";
+    localStorage.setItem("theme", mode);
+  }
+
+  toggle.addEventListener("click", () => {
+    const current = localStorage.getItem("theme") || "dark";
+    setTheme(current === "dark" ? "light" : "dark");
+  });
+
+  // Init
+  setTheme(localStorage.getItem("theme") || "dark");
+</script>
+
+</body>
+</html>
